@@ -45,7 +45,7 @@ const getAllExams = async (req, res) => {
     if (!exams) {
       return res.status(404).json({ error: "Exams Not Found" });
     }
-    res.status(201).json({ exams });
+    res.status(201).json({ note: "Given API Works !!! 😀😃😀😃", ...exams });
   } catch (error) {
     res.status(500).json({ error: error.message || "An error occurred" });
   }

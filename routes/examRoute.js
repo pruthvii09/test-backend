@@ -9,7 +9,7 @@ const admin = require("../middleware/admin");
 const router = express.Router();
 
 router.post("/", auth, admin, createExam);
-router.get("/", auth, admin, getAllExams);
+router.get("/", getAllExams);
 router.patch("/:examId", auth, admin, liveExam);
 
 module.exports = router;

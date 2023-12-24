@@ -1,0 +1,34 @@
+service: node-test
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  memorySize: 2048
+  stage: dev
+  region: ap-south-1
+  timeout: 15
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http: ANY /{proxy+}
+      - http: ANY /
+    environment:
+      PORT: ${env:PORT}
+      MONGO_URI: ${env:MONGO_URI}
+      JWT_SECRET: ${env:JWT_SECRET}
+      GMAIL: ${env:GMAIL}
+      PASSWORD: ${env:PASSWORD}
+# you can add CloudFormation resource templates here
+#resources:
+#  Resources:
+#    NewResource:
+#      Type: AWS::S3::Bucket
+#      Properties:
+#        BucketName: my-new-bucket
+#  Outputs:
+#     NewOutput:
+#       Description: "Description for the output"
+#       Value: "Some output value"
